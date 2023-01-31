@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <form>
+      Frekvencija u Hz: <input type="text" id="frequency">
+      <input type="button" value="Prikazi grafik" onclick="drawGraph()">
+    </form>
+    <div id="graph"></div>
+    <script>
+      function drawGraph() {
+        var frequency = document.getElementById("frequency").value;
+        var distance = [];
+        var powerLoss = [];
+
+        // Generisanje podataka za crtanje grafika
+        for (var i = 1000; i <= 100000; i=i+100) {
+          distance.push(i);
+
+        if ( 20* Math.log10(frequency) + 20* Math.log10(distance.push(i)) -147.56 > 0){
+          
+          powerLoss.push(20* Math.log10(frequency) + 20* Math.log10(distance.push(i)) -147.56);}
+        }
+
+        // Kreiranje grafika
+        Plotly.newPlot('graph', [{
+          y: powerLoss,
+          x: distance,
+          type: 'line',
+          mode: 'lines+markers',
+          line: {
+            shape: 'spline',
+            smoothing: 0.5
+          }
+        }], {
+          title: 'Grafik gubitka signala u slobodnom prostoru za izotropne antene',
+          xaxis: {
+            title: 'Udaljenost (m)'
+          },
+          yaxis: {
+            title: 'Gubitak signala (dB)'
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
